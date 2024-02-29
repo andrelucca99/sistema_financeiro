@@ -183,6 +183,37 @@ function validaCampo(campo, valor) {
 
 /* Página Notas Emitidas */
 
+const selectMesEmissao = document.getElementById('filtro-mes-emissao')
+const mesEmissao = document.getElementById('filtro-mes-emissao');
+
+mesEmissao.addEventListener('change', () => {
+  // console.log(selectMesEmissao.value)
+
+  listaNotasFiscais.filter((item) => {
+    let data = []
+    data = new Date(item.data_emissao).getMonth() + 1
+    console.log(selectMesEmissao.value == data)
+
+    const newRow = `
+    <tr>
+      <td>${item.id}</td>
+      <td>${item.cliente}</td>
+      <td>${item.numero}</td>
+      <td>${item.data_emissao}</td>
+      <td>${item.data_cobranca}</td>
+      <td>${item.data_pagamento}</td>
+      <td>${item.valor_total}</td>
+      <td>${item.documento_nota_fiscal}</td>
+      <td>${item.documento_boleto}</td>
+    </tr>
+    `
+
+    if (selectMesEmissao.value == data) {
+      listTableBody.innerHTML = newRow
+    }
+  })
+})
+
 const listTableBody = document.getElementById('listTableBody');
 listaNotasFiscais.forEach(invoice => {
   const row = `<tr>
