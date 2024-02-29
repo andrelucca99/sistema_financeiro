@@ -88,21 +88,15 @@ const listNotas = [
   }  
 ]
 
-const valorTest = document.getElementById('valor-notas-emitidas');
+const valorTotalNotasEmitidas = document.getElementById('valor-notas-emitidas');
 const notasEmitidasSemCobrana = document.getElementById('notas-sem-cobrana');
 const notasEmitidasinadimplencia = document.getElementById('valor-notas-emitidas-inadimplencia');
 const valorTotalNotasAVencer = document.getElementById('valor-total-notas-a-vencer');
 const valorTotalNotasPagas = document.getElementById('valor-total-notas-pagas');
 
-const filtrarMes = document.querySelector('.filtrar-mes');
-
-let listaNotaFiscal;
-
 listNotas.map((item) => {
-  console.log(item.notas_fiscais)
+  // console.log(item.notas_fiscais)
   const notaFiscal = item.notas_fiscais
-
-  listaNotaFiscal = notaFiscal;
 
   somValorTotalNotas(notaFiscal)
   calcularValorTotalNotas(notaFiscal)
@@ -120,7 +114,7 @@ function somValorTotalNotas(notas) {
 
   let soma = valores.valor1 + valores.valor2 + valores.valor3;
 
-  valorTest.innerHTML += `R$ ${soma}`
+  validaCampo(valorTotalNotasEmitidas, soma)
 }
 
 function calcularValorTotalNotas(notas) {
@@ -132,7 +126,7 @@ function calcularValorTotalNotas(notas) {
     }
   });
 
-  notasEmitidasSemCobrana.innerHTML += `R$ ${valorTotal}`
+  validaCampo(notasEmitidasSemCobrana, valorTotal)
 }
 
 function calcularValorTotalNotasInadimplencia(notas) {
@@ -146,7 +140,8 @@ function calcularValorTotalNotasInadimplencia(notas) {
       valorInadimplencia += nota.valor_total;
     }
   });
-  notasEmitidasinadimplencia.innerHTML += `R$ ${valorInadimplencia}`
+
+  validaCampo(notasEmitidasinadimplencia, valorInadimplencia)
 }
 
 function calcularValorTotalNotasAVencer(notas) {
@@ -160,7 +155,8 @@ function calcularValorTotalNotasAVencer(notas) {
       valorNotaAVencer += nota.valor_total;
     }
   })
-  valorTotalNotasAVencer.innerHTML += `R$ ${valorNotaAVencer}`
+
+  validaCampo(valorTotalNotasAVencer, valorNotaAVencer)
 }
 
 function calcularValorTotalNotasAPagas(notas) {
@@ -171,30 +167,9 @@ function calcularValorTotalNotasAPagas(notas) {
       valorNotasPagas += nota.valor_total;
     }
   });
-  valorTotalNotasPagas.innerHTML += `R$ ${valorNotasPagas}`
-  
+  validaCampo(valorTotalNotasPagas, valorNotasPagas)  
 }
 
-/* Funções de filtros */
-
-// function filtrarPorMes(notasFiscais, mes) {
-//   const mesFormatado = mes < 10 ? `0${mes}` : `${mes}`;
-
-//   console.log('mes', mesFormatado)
-
-//   const notasFiltradas = notasFiscais.filter((nota) => {
-//     const mesEmissao = new Date(nota.data_emissao).getMonth() + 1;
-
-//     if (mesEmissao === mesFormatado) {
-//       valorTest.innerHTML = ''
-//     }
-//   })
-
-//   return notasFiltradas;
-// }
-
-// console.log(listaNotaFiscal)
-
-// filtrarMes.addEventListener('click', () => {
-//   filtrarPorMes(listaNotaFiscal, 11)
-// })
+function validaCampo(campo, valor) {
+  if (campo != null) return campo.innerHTML += `R$ ${valor}`
+}
