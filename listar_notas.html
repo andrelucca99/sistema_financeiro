@@ -69,14 +69,85 @@
             <br>
             <div class="d-flex align-items-center w-100 w-md-50 mb-3 column-gap-1">
               <h2>Filtrar por:</h2>
-              <div class="bg-secondary filtro"><p>Mês de emissão</p></div>
-              <div class="bg-secondary filtro"><p>Mês da cobrança</p></div>
-              <div class="bg-secondary filtro"><p>Mês do pagamento</p></div>
-              <div class="bg-secondary filtro"><p>Status</p></div>
+              <div id="filtro-mes-emissao">
+                <select class="form-select" aria-label="Campo para filtrar por mês de emissão da nota">
+                  <option selected>Mês de emissão</option>
+                  <option value="Janeiro">Janeiro</option>
+                  <option value="Fevereiro">Fevereiro</option>
+                  <option value="Março">Março</option>
+                  <option value="Abril">Abril</option>
+                  <option value="Maio">Maio</option>
+                  <option value="Junho">Junho</option>
+                  <option value="Julho">Julho</option>
+                  <option value="Agosto">Agosto</option>
+                  <option value="Setembro">Setembro</option>
+                  <option value="Outubro">Outubro</option>
+                  <option value="Novembro">Novembro</option>
+                  <option value="Dezembro">Dezembro</option>
+                </select>
+              </div>
+              <div id="filtro-mes-cobranca">
+                <select class="form-select" aria-label="Campo para filtrar pelo mês que a cobrança foi realizada">
+                  <option selected>Mês da cobrança</option>
+                  <option value="Janeiro">Janeiro</option>
+                  <option value="Fevereiro">Fevereiro</option>
+                  <option value="Março">Março</option>
+                  <option value="Abril">Abril</option>
+                  <option value="Maio">Maio</option>
+                  <option value="Junho">Junho</option>
+                  <option value="Julho">Julho</option>
+                  <option value="Agosto">Agosto</option>
+                  <option value="Setembro">Setembro</option>
+                  <option value="Outubro">Outubro</option>
+                  <option value="Novembro">Novembro</option>
+                  <option value="Dezembro">Dezembro</option>
+                </select>
+              </div>
+              <div id="filtro-mes-pagamento">
+                <select class="form-select" aria-label="Campo para filtrar pelo mês que o pagamento foi realizado">
+                  <option selected>Mês do pagamento</option>
+                  <option value="Janeiro">Janeiro</option>
+                  <option value="Fevereiro">Fevereiro</option>
+                  <option value="Março">Março</option>
+                  <option value="Abril">Abril</option>
+                  <option value="Maio">Maio</option>
+                  <option value="Junho">Junho</option>
+                  <option value="Julho">Julho</option>
+                  <option value="Agosto">Agosto</option>
+                  <option value="Setembro">Setembro</option>
+                  <option value="Outubro">Outubro</option>
+                  <option value="Novembro">Novembro</option>
+                  <option value="Dezembro">Dezembro</option>
+                </select>
+              </div>
+              <div id="filtro-status">
+                <select class="form-select" aria-label="Campo para filtrar pelo status da nota">
+                  <option selected>Status</option>
+                  <option value="Emitida">Emitida</option>
+                  <option value="Cobrança realizada">Cobrança realizada</option>
+                  <option value="Pagamento em atraso">Pagamento em atraso</option>
+                  <option value="Pagamento realizado">Pagamento realizado</option>
+                </select>
+              </div>
             </div>
 
             <div class="d-flex border border-primary-subtle rounded-2 flex-column flex-md-row flex-wrap align-items-center justify-content-center w-100 p-2 column-gap-1 row-gap-3">
-              
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Número da nota</th>
+                    <th scope="col">Emissão</th>
+                    <th scope="col">Cobrança</th>
+                    <th scope="col">Pagamento</th>
+                    <th scope="col">Valor da Nota</th>
+                    <th scope="col">Doc. da nota fiscal</th>
+                    <th scope="col">Doc. do boleto bancário</th>
+                  </tr>
+                </thead>
+                <tbody id="listTableBody"></tbody>
+              </table>
             </div>
           </div>
         </div>

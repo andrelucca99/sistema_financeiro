@@ -37,9 +37,10 @@ const listNotas = [
     "ano": 2023,
     "notas_fiscais": [
       {
+        "id": "01",
         "numero": "NF2023001",
         "data_emissao": "2024-01-29",
-        "cliente": "Cliente B",
+        "cliente": "Maria Eduarda",
         "valor_total": 1500.00,
         "itens": [
           {"produto": "Produto 1", "quantidade": 2, "preco_unitario": 500.00},
@@ -53,9 +54,10 @@ const listNotas = [
         "status_nota": "Pagamento pendente"
       },
       {
+        "id": "02",
         "numero": "NF2023002",
         "data_emissao": "2023-02-10",
-        "cliente": "Cliente B",
+        "cliente": "Carlos Silva",
         "valor_total": 2000.00,
         "itens": [
           {"produto": "Produto 3", "quantidade": 3, "preco_unitario": 600.00},
@@ -69,9 +71,10 @@ const listNotas = [
         "status_nota": "Pagamento realizado"
       },
       {
+        "id": "03",
         "numero": "NF2023003",
         "data_emissao": "2023-03-15",
-        "cliente": "Cliente C",
+        "cliente": "Roberta Ribeiro",
         "valor_total": 1800.00,
         "itens": [
           {"produto": "Produto 5", "quantidade": 1, "preco_unitario": 1200.00},
@@ -94,9 +97,13 @@ const notasEmitidasinadimplencia = document.getElementById('valor-notas-emitidas
 const valorTotalNotasAVencer = document.getElementById('valor-total-notas-a-vencer');
 const valorTotalNotasPagas = document.getElementById('valor-total-notas-pagas');
 
+let listaNotasFiscais;
+
 listNotas.map((item) => {
-  // console.log(item.notas_fiscais)
-  const notaFiscal = item.notas_fiscais
+  console.log(item.notas_fiscais)
+  const notaFiscal = item.notas_fiscais;
+
+  listaNotasFiscais = notaFiscal;
 
   somValorTotalNotas(notaFiscal)
   calcularValorTotalNotas(notaFiscal)
@@ -173,3 +180,21 @@ function calcularValorTotalNotasAPagas(notas) {
 function validaCampo(campo, valor) {
   if (campo != null) return campo.innerHTML += `R$ ${valor}`
 }
+
+/* Página Notas Emitidas */
+
+const listTableBody = document.getElementById('listTableBody');
+listaNotasFiscais.forEach(invoice => {
+  const row = `<tr>
+    <td>${invoice.id}</td>
+    <td>${invoice.cliente}</td>
+    <td>${invoice.numero}</td>
+    <td>${invoice.data_emissao}</td>
+    <td>${invoice.data_cobranca}</td>
+    <td>${invoice.data_pagamento}</td>
+    <td>${invoice.valor_total}</td>
+    <td>${invoice.documento_nota_fiscal}</td>
+    <td>${invoice.documento_boleto}</td>
+  </tr>`;
+  listTableBody.innerHTML += row;
+});
