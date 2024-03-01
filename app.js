@@ -51,7 +51,7 @@ const listNotas = [
         "data_pagamento": "2023-01-05",
         "documento_nota_fiscal": "NF2023001",
         "documento_boleto": "BOLETO2023001",
-        "status_nota": "Pagamento pendente"
+        "status_nota": "Pagamento em atraso"
       },
       {
         "id": "02",
@@ -220,11 +220,35 @@ function validaCampo(campo, valor) {
 const listTableBody = document.getElementById('listTableBody');
 const selectMesEmissao = document.getElementById('filtro-mes-emissao')
 const selectMesCobranca = document.getElementById('filtro-mes-cobranca')
+const selectMesPagamento = document.getElementById('filtro-mes-pagamento')
+const selectStatus = document.getElementById('filtro-status')
+const btnFiltro = document.getElementById('btn-filtro')
 
 selectMesEmissao.addEventListener('change', () => {
-  let mes = selectMesEmissao.value;
+  let mesEmissao = selectMesEmissao.value;
 
-  filtrarMesEmissao(mes, listaNotasFiscais)
+  filtrarMesEmissao(mesEmissao, listaNotasFiscais)
+})
+
+selectMesCobranca.addEventListener('change', () => {
+  let mesCobranca = selectMesCobranca.value;
+  filtrarMesCobranca(mesCobranca, listaNotasFiscais)
+})
+
+selectMesPagamento.addEventListener('change', () => {
+  let mesPagamento = selectMesPagamento.value;
+  filtrarMesPagamento(mesPagamento, listaNotasFiscais)
+})
+
+selectStatus.addEventListener('change', () => {
+  let status = selectStatus.value;
+  filtrarStatus(status, listaNotasFiscais)
+})
+
+btnFiltro.addEventListener('click', () => {
+  listTableBody.innerHTML = '';
+
+  notasFiscais(listaNotasFiscais)
 })
 
 function filtrarMesEmissao(mes, lista) {
@@ -254,17 +278,101 @@ function filtrarMesEmissao(mes, lista) {
   })
 }
 
-listaNotasFiscais.forEach(item => {
-  let row = `<tr>
-    <td>${item.id}</td>
-    <td>${item.cliente}</td>
-    <td>${item.numero}</td>
-    <td>${item.data_emissao}</td>
-    <td>${item.data_cobranca}</td>
-    <td>${item.data_pagamento}</td>
-    <td>${item.valor_total}</td>
-    <td>${item.documento_nota_fiscal}</td>
-    <td>${item.documento_boleto}</td>
-  </tr>`;
-  if (listTableBody != null) return listTableBody.innerHTML += row;
-});
+function filtrarMesCobranca(mes, lista) {
+  const listaFiltrada = lista.filter((item) => {
+    const data = new Date(item.data_cobranca).getMonth() + 1;
+    return mes == data;
+  })
+
+  listTableBody.innerHTML = '';
+
+  listaFiltrada.map((item) => {
+    let newRow = `
+      <tr>
+        <td>${item.id}</td>
+        <td>${item.cliente}</td>
+        <td>${item.numero}</td>
+        <td>${item.data_emissao}</td>
+        <td>${item.data_cobranca}</td>
+        <td>${item.data_pagamento}</td>
+        <td>${item.valor_total}</td>
+        <td>${item.documento_nota_fiscal}</td>
+        <td>${item.documento_boleto}</td>
+      </tr>
+    `;
+
+    listTableBody.innerHTML += newRow;
+  })
+}
+
+function filtrarMesPagamento(mes, lista) {
+  const listaFiltrada = lista.filter((item) => {
+    const data = new Date(item.data_pagamento).getMonth() + 1;
+    return mes == data;
+  })
+
+  listTableBody.innerHTML = '';
+
+  listaFiltrada.map((item) => {
+    let newRow = `
+      <tr>
+        <td>${item.id}</td>
+        <td>${item.cliente}</td>
+        <td>${item.numero}</td>
+        <td>${item.data_emissao}</td>
+        <td>${item.data_cobranca}</td>
+        <td>${item.data_pagamento}</td>
+        <td>${item.valor_total}</td>
+        <td>${item.documento_nota_fiscal}</td>
+        <td>${item.documento_boleto}</td>
+      </tr>
+    `;
+
+    listTableBody.innerHTML += newRow;
+  })
+}
+
+function filtrarStatus(status, lista) {
+  const listaFiltrada = lista.filter((item) => {
+    return status == item.status_nota;
+  })
+
+  listTableBody.innerHTML = '';
+
+  listaFiltrada.map((item) => {
+    let newRow = `
+      <tr>
+        <td>${item.id}</td>
+        <td>${item.cliente}</td>
+        <td>${item.numero}</td>
+        <td>${item.data_emissao}</td>
+        <td>${item.data_cobranca}</td>
+        <td>${item.data_pagamento}</td>
+        <td>${item.valor_total}</td>
+        <td>${item.documento_nota_fiscal}</td>
+        <td>${item.documento_boleto}</td>
+      </tr>
+    `;
+
+    listTableBody.innerHTML += newRow;
+  })
+}
+
+function notasFiscais (lista) {
+  lista.forEach(item => {
+    let row = `<tr>
+      <td>${item.id}</td>
+      <td>${item.cliente}</td>
+      <td>${item.numero}</td>
+      <td>${item.data_emissao}</td>
+      <td>${item.data_cobranca}</td>
+      <td>${item.data_pagamento}</td>
+      <td>${item.valor_total}</td>
+      <td>${item.documento_nota_fiscal}</td>
+      <td>${item.documento_boleto}</td>
+    </tr>`;
+    if (listTableBody != null) return listTableBody.innerHTML += row;
+  });
+}
+
+notasFiscais(listaNotasFiscais)
