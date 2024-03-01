@@ -165,3 +165,7 @@ html[data-bs-theme="light"] .theme-toggle .bi-sun {
   font-size: 20px;
   font-weight: bold;
 }
+
+.sub-titulo {
+  font-size: 18px;
+}
