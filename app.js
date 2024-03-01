@@ -86,7 +86,41 @@ const listNotas = [
         "documento_nota_fiscal": "NF2023003",
         "documento_boleto": "BOLETO2023003",
         "status_nota": "Pagamento realizado"
-      }
+      },
+      {
+        "id": "04",
+        "numero": "NF2023006",
+        "data_emissao": "2024-02-29",
+        "cliente": "Camila Martins",
+        "valor_total": 1500.00,
+        "itens": [
+          {"produto": "Produto 1", "quantidade": 2, "preco_unitario": 500.00},
+          {"produto": "Produto 2", "quantidade": 1, "preco_unitario": 500.00}
+        ],
+        "pagador": "Cliente A",
+        "data_cobranca": "2023-02-05",
+        "data_pagamento": "2023-01-05",
+        "documento_nota_fiscal": "NF2023007",
+        "documento_boleto": "BOLETO2023006",
+        "status_nota": "Pagamento pendente"
+      },
+      {
+        "id": "05",
+        "numero": "NF2023002",
+        "data_emissao": "2024-02-29",
+        "cliente": "Mario Da Silva",
+        "valor_total": 1500.00,
+        "itens": [
+          {"produto": "Produto 1", "quantidade": 2, "preco_unitario": 500.00},
+          {"produto": "Produto 2", "quantidade": 1, "preco_unitario": 500.00}
+        ],
+        "pagador": "Cliente A",
+        "data_cobranca": "2023-02-05",
+        "data_pagamento": "2023-01-05",
+        "documento_nota_fiscal": "NF2023004",
+        "documento_boleto": "BOLETO2023005",
+        "status_nota": "Pagamento pendente"
+      },
     ]
   }  
 ]
@@ -100,7 +134,7 @@ const valorTotalNotasPagas = document.getElementById('valor-total-notas-pagas');
 let listaNotasFiscais;
 
 listNotas.map((item) => {
-  console.log(item.notas_fiscais)
+  // console.log(item.notas_fiscais)
   const notaFiscal = item.notas_fiscais;
 
   listaNotasFiscais = notaFiscal;
@@ -183,49 +217,54 @@ function validaCampo(campo, valor) {
 
 /* Página Notas Emitidas */
 
+const listTableBody = document.getElementById('listTableBody');
 const selectMesEmissao = document.getElementById('filtro-mes-emissao')
-const mesEmissao = document.getElementById('filtro-mes-emissao');
+const selectMesCobranca = document.getElementById('filtro-mes-cobranca')
 
-mesEmissao.addEventListener('change', () => {
-  // console.log(selectMesEmissao.value)
+selectMesEmissao.addEventListener('change', () => {
+  let mes = selectMesEmissao.value;
 
-  listaNotasFiscais.filter((item) => {
-    let data = []
-    data = new Date(item.data_emissao).getMonth() + 1
-    console.log(selectMesEmissao.value == data)
-
-    const newRow = `
-    <tr>
-      <td>${item.id}</td>
-      <td>${item.cliente}</td>
-      <td>${item.numero}</td>
-      <td>${item.data_emissao}</td>
-      <td>${item.data_cobranca}</td>
-      <td>${item.data_pagamento}</td>
-      <td>${item.valor_total}</td>
-      <td>${item.documento_nota_fiscal}</td>
-      <td>${item.documento_boleto}</td>
-    </tr>
-    `
-
-    if (selectMesEmissao.value == data) {
-      listTableBody.innerHTML = newRow
-    }
-  })
+  filtrarMesEmissao(mes, listaNotasFiscais)
 })
 
-const listTableBody = document.getElementById('listTableBody');
-listaNotasFiscais.forEach(invoice => {
-  const row = `<tr>
-    <td>${invoice.id}</td>
-    <td>${invoice.cliente}</td>
-    <td>${invoice.numero}</td>
-    <td>${invoice.data_emissao}</td>
-    <td>${invoice.data_cobranca}</td>
-    <td>${invoice.data_pagamento}</td>
-    <td>${invoice.valor_total}</td>
-    <td>${invoice.documento_nota_fiscal}</td>
-    <td>${invoice.documento_boleto}</td>
+function filtrarMesEmissao(mes, lista) {
+  const listaFiltrada = lista.filter((item) => {
+    const data = new Date(item.data_emissao).getMonth() + 1;
+    return mes == data;
+  })
+
+  listTableBody.innerHTML = '';
+
+  listaFiltrada.map((item) => {
+    let newRow = `
+      <tr>
+        <td>${item.id}</td>
+        <td>${item.cliente}</td>
+        <td>${item.numero}</td>
+        <td>${item.data_emissao}</td>
+        <td>${item.data_cobranca}</td>
+        <td>${item.data_pagamento}</td>
+        <td>${item.valor_total}</td>
+        <td>${item.documento_nota_fiscal}</td>
+        <td>${item.documento_boleto}</td>
+      </tr>
+    `;
+
+    listTableBody.innerHTML += newRow;
+  })
+}
+
+listaNotasFiscais.forEach(item => {
+  let row = `<tr>
+    <td>${item.id}</td>
+    <td>${item.cliente}</td>
+    <td>${item.numero}</td>
+    <td>${item.data_emissao}</td>
+    <td>${item.data_cobranca}</td>
+    <td>${item.data_pagamento}</td>
+    <td>${item.valor_total}</td>
+    <td>${item.documento_nota_fiscal}</td>
+    <td>${item.documento_boleto}</td>
   </tr>`;
-  listTableBody.innerHTML += row;
+  if (listTableBody != null) return listTableBody.innerHTML += row;
 });
