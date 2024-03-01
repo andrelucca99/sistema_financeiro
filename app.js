@@ -215,6 +215,32 @@ function validaCampo(campo, valor) {
   if (campo != null) return campo.innerHTML += `R$ ${valor}`
 }
 
+const filtrarMes = document.getElementById('filtra-mes');
+
+filtrarMes.addEventListener('change', () => {
+  const mes = filtrarMes.value;
+  filtraMes(mes, listaNotasFiscais)
+})
+
+function filtraMes (mes, lista) {
+  const filtraLista = lista.filter((item) => {
+    const valorNotas = new Date(item.data_emissao).getMonth() + 1;
+
+    return mes == valorNotas
+  });
+
+  let valorTotalFiltrado = 0;
+
+  filtraLista.map((item) => {
+    let valor = item.valor_total
+    valorTotalFiltrado += valor;
+  })
+
+  console.log(valorTotalFiltrado)
+  valorTotalNotasEmitidas.innerHTML = ''
+  validaCampo(valorTotalNotasEmitidas, valorTotalFiltrado);
+}
+
 /* Página Notas Emitidas */
 
 const listTableBody = document.getElementById('listTableBody');
