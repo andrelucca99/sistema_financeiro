@@ -168,6 +168,7 @@ function calcularValorTotalNotas(notas) {
   });
 
   validaCampo(notasEmitidasSemCobrana, valorTotal)
+  return valorTotal
 }
 
 function calcularValorTotalNotasInadimplencia(notas) {
@@ -183,6 +184,7 @@ function calcularValorTotalNotasInadimplencia(notas) {
   });
 
   validaCampo(notasEmitidasinadimplencia, valorInadimplencia)
+  return valorInadimplencia;
 }
 
 function calcularValorTotalNotasAVencer(notas) {
@@ -198,6 +200,7 @@ function calcularValorTotalNotasAVencer(notas) {
   })
 
   validaCampo(valorTotalNotasAVencer, valorNotaAVencer)
+  return valorNotaAVencer;
 }
 
 function calcularValorTotalNotasAPagas(notas) {
@@ -208,19 +211,26 @@ function calcularValorTotalNotasAPagas(notas) {
       valorNotasPagas += nota.valor_total;
     }
   });
-  validaCampo(valorTotalNotasPagas, valorNotasPagas)  
+
+  validaCampo(valorTotalNotasPagas, valorNotasPagas)
+  return valorNotasPagas;  
 }
 
 function validaCampo(campo, valor) {
-  if (campo != null) return campo.innerHTML += `R$ ${valor}`
+  if (campo != null) {
+    campo.innerHTML = '';
+    return campo.innerHTML += `R$ ${valor}`
+  }
 }
 
 const filtrarMes = document.getElementById('filtra-mes');
 
-filtrarMes.addEventListener('change', () => {
-  const mes = filtrarMes.value;
-  filtraMes(mes, listaNotasFiscais)
-})
+if (filtrarMes !== null) {
+  filtrarMes.addEventListener('change', () => {
+    const mes = filtrarMes.value;
+    filtraMes(mes, listaNotasFiscais)
+  })
+}
 
 function filtraMes (mes, lista) {
   const filtraLista = lista.filter((item) => {
@@ -236,9 +246,16 @@ function filtraMes (mes, lista) {
     valorTotalFiltrado += valor;
   })
 
-  console.log(valorTotalFiltrado)
-  valorTotalNotasEmitidas.innerHTML = ''
+  let valorTotal = calcularValorTotalNotas(filtraLista);
+  let valorTotalNotasInadimplencia = calcularValorTotalNotasInadimplencia(filtraLista)
+  let valorNotaAVencer = calcularValorTotalNotasAVencer(filtraLista)
+  let valorNotasPagas = calcularValorTotalNotasAPagas(filtraLista)
+
   validaCampo(valorTotalNotasEmitidas, valorTotalFiltrado);
+  validaCampo(notasEmitidasSemCobrana, valorTotal)
+  validaCampo(notasEmitidasinadimplencia, valorTotalNotasInadimplencia)
+  validaCampo(valorTotalNotasAVencer, valorNotaAVencer)
+  validaCampo(valorTotalNotasPagas, valorNotasPagas)
 }
 
 /* Página Notas Emitidas */
@@ -250,32 +267,43 @@ const selectMesPagamento = document.getElementById('filtro-mes-pagamento')
 const selectStatus = document.getElementById('filtro-status')
 const btnFiltro = document.getElementById('btn-filtro')
 
-selectMesEmissao.addEventListener('change', () => {
-  let mesEmissao = selectMesEmissao.value;
 
-  filtrarMesEmissao(mesEmissao, listaNotasFiscais)
-})
+if (selectMesEmissao !== null) {
+  selectMesEmissao.addEventListener('change', () => {
+    let mesEmissao = selectMesEmissao.value;
+  
+    filtrarMesEmissao(mesEmissao, listaNotasFiscais)
+  })
+}
 
-selectMesCobranca.addEventListener('change', () => {
-  let mesCobranca = selectMesCobranca.value;
-  filtrarMesCobranca(mesCobranca, listaNotasFiscais)
-})
+if (selectMesCobranca !== null) {
+  selectMesCobranca.addEventListener('change', () => {
+    let mesCobranca = selectMesCobranca.value;
+    filtrarMesCobranca(mesCobranca, listaNotasFiscais)
+  })
+}
 
-selectMesPagamento.addEventListener('change', () => {
-  let mesPagamento = selectMesPagamento.value;
-  filtrarMesPagamento(mesPagamento, listaNotasFiscais)
-})
+if (selectMesPagamento !== null) {
+  selectMesPagamento.addEventListener('change', () => {
+    let mesPagamento = selectMesPagamento.value;
+    filtrarMesPagamento(mesPagamento, listaNotasFiscais)
+  })
+}
 
-selectStatus.addEventListener('change', () => {
-  let status = selectStatus.value;
-  filtrarStatus(status, listaNotasFiscais)
-})
+if (selectStatus !== null) {
+  selectStatus.addEventListener('change', () => {
+    let status = selectStatus.value;
+    filtrarStatus(status, listaNotasFiscais)
+  })
+}
 
-btnFiltro.addEventListener('click', () => {
-  listTableBody.innerHTML = '';
-
-  notasFiscais(listaNotasFiscais)
-})
+if (btnFiltro !== null) {
+  btnFiltro.addEventListener('click', () => {
+    listTableBody.innerHTML = '';
+  
+    notasFiscais(listaNotasFiscais)
+  })
+}
 
 function filtrarMesEmissao(mes, lista) {
   const listaFiltrada = lista.filter((item) => {
@@ -313,7 +341,9 @@ function filtrarStatus(status, lista) {
 }
 
 function notasFiscais (lista) {
-  listTableBody.innerHTML = '';
+  if (listTableBody !== null) {
+    listTableBody.innerHTML = '';
+  }
 
   lista.forEach(item => {
     let row = `<tr>
