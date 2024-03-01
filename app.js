@@ -257,25 +257,7 @@ function filtrarMesEmissao(mes, lista) {
     return mes == data;
   })
 
-  listTableBody.innerHTML = '';
-
-  listaFiltrada.map((item) => {
-    let newRow = `
-      <tr>
-        <td>${item.id}</td>
-        <td>${item.cliente}</td>
-        <td>${item.numero}</td>
-        <td>${item.data_emissao}</td>
-        <td>${item.data_cobranca}</td>
-        <td>${item.data_pagamento}</td>
-        <td>${item.valor_total}</td>
-        <td>${item.documento_nota_fiscal}</td>
-        <td>${item.documento_boleto}</td>
-      </tr>
-    `;
-
-    listTableBody.innerHTML += newRow;
-  })
+  notasFiscais(listaFiltrada)
 }
 
 function filtrarMesCobranca(mes, lista) {
@@ -284,25 +266,7 @@ function filtrarMesCobranca(mes, lista) {
     return mes == data;
   })
 
-  listTableBody.innerHTML = '';
-
-  listaFiltrada.map((item) => {
-    let newRow = `
-      <tr>
-        <td>${item.id}</td>
-        <td>${item.cliente}</td>
-        <td>${item.numero}</td>
-        <td>${item.data_emissao}</td>
-        <td>${item.data_cobranca}</td>
-        <td>${item.data_pagamento}</td>
-        <td>${item.valor_total}</td>
-        <td>${item.documento_nota_fiscal}</td>
-        <td>${item.documento_boleto}</td>
-      </tr>
-    `;
-
-    listTableBody.innerHTML += newRow;
-  })
+  notasFiscais(listaFiltrada)
 }
 
 function filtrarMesPagamento(mes, lista) {
@@ -311,25 +275,7 @@ function filtrarMesPagamento(mes, lista) {
     return mes == data;
   })
 
-  listTableBody.innerHTML = '';
-
-  listaFiltrada.map((item) => {
-    let newRow = `
-      <tr>
-        <td>${item.id}</td>
-        <td>${item.cliente}</td>
-        <td>${item.numero}</td>
-        <td>${item.data_emissao}</td>
-        <td>${item.data_cobranca}</td>
-        <td>${item.data_pagamento}</td>
-        <td>${item.valor_total}</td>
-        <td>${item.documento_nota_fiscal}</td>
-        <td>${item.documento_boleto}</td>
-      </tr>
-    `;
-
-    listTableBody.innerHTML += newRow;
-  })
+  notasFiscais(listaFiltrada)
 }
 
 function filtrarStatus(status, lista) {
@@ -337,28 +283,12 @@ function filtrarStatus(status, lista) {
     return status == item.status_nota;
   })
 
-  listTableBody.innerHTML = '';
-
-  listaFiltrada.map((item) => {
-    let newRow = `
-      <tr>
-        <td>${item.id}</td>
-        <td>${item.cliente}</td>
-        <td>${item.numero}</td>
-        <td>${item.data_emissao}</td>
-        <td>${item.data_cobranca}</td>
-        <td>${item.data_pagamento}</td>
-        <td>${item.valor_total}</td>
-        <td>${item.documento_nota_fiscal}</td>
-        <td>${item.documento_boleto}</td>
-      </tr>
-    `;
-
-    listTableBody.innerHTML += newRow;
-  })
+  notasFiscais(listaFiltrada)
 }
 
 function notasFiscais (lista) {
+  listTableBody.innerHTML = '';
+
   lista.forEach(item => {
     let row = `<tr>
       <td>${item.id}</td>
