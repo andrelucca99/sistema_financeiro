@@ -14,13 +14,17 @@
 
 ## Lagout
 
-Esse projeto foi desenvolvido em duas páginas. Página de Dashboard, onde usuários conseguem filtar os dados das notas fiscais por: Mês, Trimestre e Ano e logo abaixo também conseguem ver dois gráficos para melhor entendimentos sobre: Taxa de inadimplência e Evolução da inadimplência mês a mês.
+<p>
+  Esse projeto foi desenvolvido em duas páginas. Página de Dashboard, onde usuários conseguem filtar os dados das notas fiscais por: Mês, Trimestre e Ano e logo abaixo também conseguem ver dois gráficos para melhor entendimentos sobre: Taxa de inadimplência e Evolução da inadimplência mês a mês.
+</p>
 
-<img src="./assets/perfil.jpg" />
+<img src="./assets/dashboard.gif" />
 
-E na segunda página os usuários conseguem visualizar uma lista de notas fiscais, apresentadas em uma tabela com todos os dados de cada nota. Além de poderem fazerem filtros de buscas.
+<p>
+  E na segunda página os usuários conseguem visualizar uma lista de notas fiscais, apresentadas em uma tabela com todos os dados de cada nota. Além de poderem fazerem filtros de buscas.
+</p>
 
-<img src="./assets/perfil.jpg" />
+<img src="./assets/lista.gif" />
 
 ## Instruções básicas para rodar o projeto na sua maquina:
 
