@@ -136,6 +136,7 @@ html[data-bs-theme="light"] .theme-toggle .bi-moon {
 
 html[data-bs-theme="dark"] .theme-toggle .bi-moon {
   display: none;
+  color: #fff;
 }
 
 html[data-bs-theme="light"] .theme-toggle .bi-sun {
@@ -152,9 +153,8 @@ html[data-bs-theme="light"] .theme-toggle .bi-sun {
 }
 
 .card-filtro {
-  height: 100px;
+  height: 120px;
   text-align: center;
-  color: #fff;
 }
 
 .card-filtro > h3 {
@@ -162,7 +162,7 @@ html[data-bs-theme="light"] .theme-toggle .bi-sun {
 }
 
 .card-filtro > span {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
 }
 
