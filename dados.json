@@ -1,0 +1,91 @@
+{
+  "empresa": "Flora Express",
+  "ano": 2023,
+  "notas_fiscais": [
+    {
+      "id": "01",
+      "numero": "NF2023001",
+      "data_emissao": "2022-01-05",
+      "cliente": "Maria Eduarda",
+      "valor_total": 1500.00,
+      "itens": [
+        {"produto": "Produto 1", "quantidade": 2, "preco_unitario": 500.00},
+        {"produto": "Produto 2", "quantidade": 1, "preco_unitario": 500.00}
+      ],
+      "pagador": "Cliente A",
+      "data_cobranca": null,
+      "data_pagamento": "2022-01-25",
+      "documento_nota_fiscal": "NF2023001",
+      "documento_boleto": "BOLETO2023001",
+      "status_nota": "Pagamento em realizado"
+    },
+    {
+      "id": "02",
+      "numero": "NF2023002",
+      "data_emissao": "2023-02-10",
+      "cliente": "Carlos Silva",
+      "valor_total": 2000.00,
+      "itens": [
+        {"produto": "Produto 3", "quantidade": 3, "preco_unitario": 600.00},
+        {"produto": "Produto 4", "quantidade": 2, "preco_unitario": 400.00}
+      ],
+      "pagador": null,
+      "data_cobranca": "2023-02-20",
+      "data_pagamento": null,
+      "documento_nota_fiscal": "NF2023002",
+      "documento_boleto": "BOLETO2023002",
+      "status_nota": "Cobrança realizada"
+    },
+    {
+      "id": "03",
+      "numero": "NF2023003",
+      "data_emissao": "2023-03-15",
+      "cliente": "Roberta Ribeiro",
+      "valor_total": 1800.00,
+      "itens": [
+        {"produto": "Produto 5", "quantidade": 1, "preco_unitario": 1200.00},
+        {"produto": "Produto 6", "quantidade": 2, "preco_unitario": 300.00}
+      ],
+      "pagador": null,
+      "data_cobranca": "2023-03-20",
+      "data_pagamento": null,
+      "documento_nota_fiscal": "NF2023003",
+      "documento_boleto": "BOLETO2023003",
+      "status_nota": "Emitida"
+    },
+    {
+      "id": "04",
+      "numero": "NF2023006",
+      "data_emissao": "2023-02-29",
+      "cliente": "Camila Martins",
+      "valor_total": 1500.00,
+      "itens": [
+        {"produto": "Produto 1", "quantidade": 2, "preco_unitario": 500.00},
+        {"produto": "Produto 2", "quantidade": 1, "preco_unitario": 500.00}
+      ],
+      "pagador": "Cliente A",
+      "data_cobranca": "2023-03-05",
+      "data_pagamento": null,
+      "documento_nota_fiscal": "NF2023007",
+      "documento_boleto": "BOLETO2023006",
+      "status_nota": "Pagamento em atraso"
+    },
+    {
+      "id": "05",
+      "numero": "NF2023002",
+      "data_emissao": "2023-02-10",
+      "cliente": "Mario Da Silva",
+      "valor_total": 1500.00,
+      "itens": [
+        {"produto": "Produto 1", "quantidade": 2, "preco_unitario": 500.00},
+        {"produto": "Produto 2", "quantidade": 1, "preco_unitario": 500.00}
+      ],
+      "pagador": "Cliente A",
+      "data_cobranca": "2023-02-15",
+      "data_pagamento": null,
+      "documento_nota_fiscal": "NF2023004",
+      "documento_boleto": "BOLETO2023005",
+      "status_nota": "Pagamento em atraso"
+    }
+  ]
+}
