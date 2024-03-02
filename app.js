@@ -39,7 +39,7 @@ const listNotas = [
       {
         "id": "01",
         "numero": "NF2023001",
-        "data_emissao": "2024-01-29",
+        "data_emissao": "2022-01-05",
         "cliente": "Maria Eduarda",
         "valor_total": 1500.00,
         "itens": [
@@ -47,8 +47,8 @@ const listNotas = [
           {"produto": "Produto 2", "quantidade": 1, "preco_unitario": 500.00}
         ],
         "pagador": "Cliente A",
-        "data_cobranca": "2023-02-05",
-        "data_pagamento": "2023-01-05",
+        "data_cobranca": "2022-02-20",
+        "data_pagamento": "2022-01-25",
         "documento_nota_fiscal": "NF2023001",
         "documento_boleto": "BOLETO2023001",
         "status_nota": "Pagamento em atraso"
@@ -64,8 +64,8 @@ const listNotas = [
           {"produto": "Produto 4", "quantidade": 2, "preco_unitario": 400.00}
         ],
         "pagador": "Cliente B",
-        "data_cobranca": "2023-02-25",
-        "data_pagamento": "2023-02-28",
+        "data_cobranca": "2023-02-20",
+        "data_pagamento": "2023-02-20",
         "documento_nota_fiscal": "NF2023002",
         "documento_boleto": "BOLETO2023002",
         "status_nota": "Pagamento realizado"
@@ -81,7 +81,7 @@ const listNotas = [
           {"produto": "Produto 6", "quantidade": 2, "preco_unitario": 300.00}
         ],
         "pagador": "Cliente C",
-        "data_cobranca": "2023-03-30",
+        "data_cobranca": "2023-03-20",
         "data_pagamento": "2023-04-05",
         "documento_nota_fiscal": "NF2023003",
         "documento_boleto": "BOLETO2023003",
@@ -90,7 +90,7 @@ const listNotas = [
       {
         "id": "04",
         "numero": "NF2023006",
-        "data_emissao": "2024-02-29",
+        "data_emissao": "2023-02-29",
         "cliente": "Camila Martins",
         "valor_total": 1500.00,
         "itens": [
@@ -98,8 +98,8 @@ const listNotas = [
           {"produto": "Produto 2", "quantidade": 1, "preco_unitario": 500.00}
         ],
         "pagador": "Cliente A",
-        "data_cobranca": "2023-02-05",
-        "data_pagamento": "2023-01-05",
+        "data_cobranca": "2023-03-05",
+        "data_pagamento": "2023-03-07",
         "documento_nota_fiscal": "NF2023007",
         "documento_boleto": "BOLETO2023006",
         "status_nota": "Pagamento pendente"
@@ -107,7 +107,7 @@ const listNotas = [
       {
         "id": "05",
         "numero": "NF2023002",
-        "data_emissao": "2024-02-29",
+        "data_emissao": "2023-02-10",
         "cliente": "Mario Da Silva",
         "valor_total": 1500.00,
         "itens": [
@@ -115,14 +115,14 @@ const listNotas = [
           {"produto": "Produto 2", "quantidade": 1, "preco_unitario": 500.00}
         ],
         "pagador": "Cliente A",
-        "data_cobranca": "2023-02-05",
-        "data_pagamento": "2023-01-05",
+        "data_cobranca": "2023-02-15",
+        "data_pagamento": "2023-03-05",
         "documento_nota_fiscal": "NF2023004",
         "documento_boleto": "BOLETO2023005",
         "status_nota": "Pagamento pendente"
       },
     ]
-  }  
+  }   
 ]
 
 const valorTotalNotasEmitidas = document.getElementById('valor-notas-emitidas');
@@ -134,28 +134,27 @@ const valorTotalNotasPagas = document.getElementById('valor-total-notas-pagas');
 let listaNotasFiscais;
 
 listNotas.map((item) => {
-  // console.log(item.notas_fiscais)
+  // console.log(item.ano)
   const notaFiscal = item.notas_fiscais;
 
   listaNotasFiscais = notaFiscal;
 
-  somValorTotalNotas(notaFiscal)
+  valorTotalFiltrado(notaFiscal)
   calcularValorTotalNotas(notaFiscal)
   calcularValorTotalNotasInadimplencia(notaFiscal)
   calcularValorTotalNotasAVencer(notaFiscal)
   calcularValorTotalNotasAPagas(notaFiscal)
 })
 
-function somValorTotalNotas(notas) {
-  const valores = {
-    valor1: notas[0].valor_total,
-    valor2: notas[1].valor_total,
-    valor3: notas[2].valor_total,
-  }
+function valorTotalFiltrado(notas) {
+  let valorTotalFiltrado = 0;
 
-  let soma = valores.valor1 + valores.valor2 + valores.valor3;
-
-  validaCampo(valorTotalNotasEmitidas, soma)
+  notas.map((item) => {
+    let valor = item.valor_total
+    valorTotalFiltrado += valor;
+  })
+  validaCampo(valorTotalNotasEmitidas, valorTotalFiltrado)
+  return valorTotalFiltrado;
 }
 
 function calcularValorTotalNotas(notas) {
@@ -224,6 +223,7 @@ function validaCampo(campo, valor) {
 }
 
 const filtrarMes = document.getElementById('filtra-mes');
+const filtrarAno = document.getElementById('filtra-ano');
 
 if (filtrarMes !== null) {
   filtrarMes.addEventListener('change', () => {
@@ -239,24 +239,33 @@ function filtraMes (mes, lista) {
     return mes == valorNotas
   });
 
-  let valorTotalFiltrado = 0;
+  validaCampo(valorTotalNotasEmitidas, valorTotalFiltrado(filtraLista))
+  validaCampo(notasEmitidasSemCobrana, calcularValorTotalNotas(filtraLista))
+  validaCampo(notasEmitidasinadimplencia, calcularValorTotalNotasInadimplencia(filtraLista))
+  validaCampo(valorTotalNotasAVencer, calcularValorTotalNotasAVencer(filtraLista))
+  validaCampo(valorTotalNotasPagas, calcularValorTotalNotasAPagas(filtraLista))
+}
 
-  filtraLista.map((item) => {
-    let valor = item.valor_total
-    valorTotalFiltrado += valor;
+if (filtrarAno !== null) {
+  filtrarAno.addEventListener('change', () => {
+    const ano = filtrarAno.value;
+    filtraAno(ano, listaNotasFiscais)
+  })
+}
+
+function filtraAno (ano, lista) {
+  const filtraLista = lista.filter((item) => {
+    const recebeAno = new Date(item.data_emissao).getFullYear();
+    return recebeAno == ano;
   })
 
-  let valorTotal = calcularValorTotalNotas(filtraLista);
-  let valorTotalNotasInadimplencia = calcularValorTotalNotasInadimplencia(filtraLista)
-  let valorNotaAVencer = calcularValorTotalNotasAVencer(filtraLista)
-  let valorNotasPagas = calcularValorTotalNotasAPagas(filtraLista)
-
-  validaCampo(valorTotalNotasEmitidas, valorTotalFiltrado);
-  validaCampo(notasEmitidasSemCobrana, valorTotal)
-  validaCampo(notasEmitidasinadimplencia, valorTotalNotasInadimplencia)
-  validaCampo(valorTotalNotasAVencer, valorNotaAVencer)
-  validaCampo(valorTotalNotasPagas, valorNotasPagas)
+  validaCampo(valorTotalNotasEmitidas, valorTotalFiltrado(filtraLista))
+  validaCampo(notasEmitidasSemCobrana, calcularValorTotalNotas(filtraLista))
+  validaCampo(notasEmitidasinadimplencia, calcularValorTotalNotasInadimplencia(filtraLista))
+  validaCampo(valorTotalNotasAVencer, calcularValorTotalNotasAVencer(filtraLista))
+  validaCampo(valorTotalNotasPagas, calcularValorTotalNotasAPagas(filtraLista))
 }
+
 
 /* Página Notas Emitidas */
 
