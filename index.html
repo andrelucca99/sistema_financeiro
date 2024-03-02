@@ -67,9 +67,9 @@
           <div class="col-12 d-flex flex-column mb-5">
             <h2>Dashboard</h2>
             <br>
-            <div class="d-flex align-items-center w-100 w-md-50 mb-3 column-gap-1">
+            <div class="d-flex flex-column flex-md-row align-items-center w-100 w-md-50 mb-3 column-gap-1">
               <h2 class="sub-titulo">Filtrar por:</h2>
-              <div>
+              <div class="d-flex flex-column flex-sm-row gap-2">
                 <select id="filtra-mes" class="form-select" aria-label="Campo para filtrar pelo mês">
                   <option selected>Mês</option>
                   <option value="01">Janeiro</option>
@@ -85,8 +85,7 @@
                   <option value="11">Novembro</option>
                   <option value="12">Dezembro</option>
                 </select>
-              </div>
-              <div>
+
                 <select class="form-select" aria-label="Campo para filtrar pelo Trimestre">
                   <option selected>Trimestre</option>
                   <option value="1">1</option>
@@ -94,8 +93,7 @@
                   <option value="3">3</option>
                   <option value="4">4</option>
                 </select>
-              </div>
-              <div>
+
                 <select id="filtra-ano" class="form-select" aria-label="Campo para filtrar pelo ano">
                   <option selected>Ano</option>
                   <option value="2023">2023</option>
@@ -105,28 +103,28 @@
             </div>
 
             <div class="d-flex rounded-2 flex-column flex-md-row flex-wrap align-items-center justify-content-center w-100 p-2 column-gap-1 row-gap-3">
-              <div class="d-flex flex-column justify-content-around col-6 col-md-2 p-2 rounded-1 border border-primary-subtle sub-titulo text-center card-filtro">
-                <h3>Valor Total das notas emitidas</h3>
+              <div class="d-flex flex-column justify-content-around col-6 col-md-4 col-lg-2 p-2 rounded-1 border border-primary-subtle sub-titulo text-center card-filtro">
+                <h3 class="fs-6">Valor Total Notas Emitidas</h3>
                 <span class="text-primary" id="valor-notas-emitidas"></span>
               </div>
 
-              <div class="d-flex flex-column justify-content-around col-6 col-md-2 p-2 rounded-1 border border-primary-subtle sub-titulo text-center card-filtro">
-                <h3>Valor total das notas emitidas, mas sem ter a cobrança feita</h3>
+              <div class="d-flex flex-column justify-content-around col-6 col-md-4 col-lg-2 p-2 rounded-1 border border-primary-subtle sub-titulo text-center card-filtro">
+                <h3 class="fs-6">Valor Total Notas Emitidas, Sem Cobrança</h3>
                 <span class="text-primary" id="notas-sem-cobrana"></span>
               </div>
 
-              <div class="d-flex flex-column justify-content-around col-6 col-md-2 p-2 rounded-1 border border-primary-subtle sub-titulo text-center card-filtro">
-                <h3>Valor total das notas vencidas - Inadimplência</h3>
+              <div class="d-flex flex-column justify-content-around col-6 col-md-4 col-lg-2 p-2 rounded-1 border border-primary-subtle sub-titulo text-center card-filtro">
+                <h3 class="fs-6">Valor Total Notas Vencidas - Inadimplência</h3>
                 <span class="text-primary" id="valor-notas-emitidas-inadimplencia"></span>
               </div>
 
-              <div class="d-flex flex-column justify-content-around col-6 col-md-2 p-2 rounded-1 border border-primary-subtle sub-titulo text-center card-filtro">
-                <h3>Valor total das notas a vencer</h3>
+              <div class="d-flex flex-column justify-content-around col-6 col-md-4 col-lg-2 p-2 rounded-1 border border-primary-subtle sub-titulo text-center card-filtro">
+                <h3 class="fs-6">Valor Total Notas A Vencer</h3>
                 <span class="text-primary" id="valor-total-notas-a-vencer"></span>
               </div>
 
-              <div class="d-flex flex-column justify-content-around col-6 col-md-2 p-2 rounded-1 border border-primary-subtle sub-titulo text-center card-filtro">
-                <h3>Valor total das notas pagas</h3>
+              <div class="d-flex flex-column justify-content-around col-6 col-md-4 col-lg-2 p-2 rounded-1 border border-primary-subtle sub-titulo text-center card-filtro">
+                <h3 class="fs-6">Valor Total Notas Pagas</h3>
                 <span class="text-primary" id="valor-total-notas-pagas"></span>
               </div>
             </div>

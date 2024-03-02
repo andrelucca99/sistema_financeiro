@@ -136,7 +136,6 @@ html[data-bs-theme="light"] .theme-toggle .bi-moon {
 
 html[data-bs-theme="dark"] .theme-toggle .bi-moon {
   display: none;
-  color: #fff;
 }
 
 html[data-bs-theme="light"] .theme-toggle .bi-sun {
