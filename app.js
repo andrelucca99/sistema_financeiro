@@ -38,6 +38,7 @@ const valorTotalNotasAVencer = document.getElementById('valor-total-notas-a-venc
 const notasEmitidasinadimplencia = document.getElementById('valor-notas-emitidas-inadimplencia');
 
 let listaNotasFiscais;
+let anoNotasFiscais;
 
 document.addEventListener('DOMContentLoaded', () => {
   const url = 'dados.json';
@@ -52,7 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then((data) => {
       const notaFiscal = data.notas_fiscais;
-
+      
+      anoNotasFiscais = data.ano
       listaNotasFiscais = notaFiscal;
 
       calcularvalorTotalFiltrado(notaFiscal);
@@ -145,6 +147,7 @@ function validaCampo(campo, valor) {
 
 const filtrarMes = document.getElementById('filtra-mes');
 const filtrarAno = document.getElementById('filtra-ano');
+const filtrarTrimestre = document.getElementById('filtra-trimestre');
 
 if (filtrarMes !== null) {
   filtrarMes.addEventListener('change', () => {
@@ -187,6 +190,32 @@ function filtraAno (ano, lista) {
   validaCampo(valorTotalNotasPagas, calcularValorTotalNotasAPagas(filtraLista));
 }
 
+if (filtrarTrimestre !== null) {
+  filtrarTrimestre.addEventListener('change', () => {
+    const trimestre = parseInt(filtrarTrimestre.value);
+    filtraPorTrimestre(listaNotasFiscais, anoNotasFiscais, trimestre);
+  })
+}
+
+function filtraPorTrimestre (lista, ano, trimestre) {
+  if (!lista) return []
+
+  const filtraLista = lista.filter((fatura) => {
+    const dataEmissao = new Date(fatura.data_emissao);
+    const anoFatura = dataEmissao.getFullYear();
+    const trimestreFatura = Math.floor((dataEmissao.getMonth() + 3) / 3);
+
+    const resultado = anoFatura === ano && trimestreFatura === trimestre
+    
+    return resultado;
+  })
+
+  validaCampo(valorTotalNotasEmitidas, calcularvalorTotalFiltrado(filtraLista));
+  validaCampo(notasEmitidasSemCobrana, calcularValorTotalNotas(filtraLista));
+  validaCampo(notasEmitidasinadimplencia, calcularValorTotalNotasInadimplencia(filtraLista));
+  validaCampo(valorTotalNotasAVencer, calcularValorTotalNotasAVencer(filtraLista));
+  validaCampo(valorTotalNotasPagas, calcularValorTotalNotasAPagas(filtraLista));
+}
 
 /* Página Notas Emitidas */
 
