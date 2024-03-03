@@ -149,13 +149,6 @@ const filtrarMes = document.getElementById('filtra-mes');
 const filtrarAno = document.getElementById('filtra-ano');
 const filtrarTrimestre = document.getElementById('filtra-trimestre');
 
-if (filtrarMes !== null) {
-  filtrarMes.addEventListener('change', () => {
-    const mes = filtrarMes.value;
-    filtraMes(mes, listaNotasFiscais);
-  })
-}
-
 function filtraMes (mes, lista) {
   const filtraLista = lista.filter((item) => {
     const valorNotas = new Date(item.data_emissao).getMonth() + 1;
@@ -170,13 +163,6 @@ function filtraMes (mes, lista) {
   validaCampo(valorTotalNotasPagas, calcularValorTotalNotasAPagas(filtraLista));
 }
 
-if (filtrarAno !== null) {
-  filtrarAno.addEventListener('change', () => {
-    const ano = filtrarAno.value;
-    filtraAno(ano, listaNotasFiscais);
-  })
-}
-
 function filtraAno (ano, lista) {
   const filtraLista = lista.filter((item) => {
     const recebeAno = new Date(item.data_emissao).getFullYear();
@@ -189,6 +175,9 @@ function filtraAno (ano, lista) {
   validaCampo(valorTotalNotasAVencer, calcularValorTotalNotasAVencer(filtraLista));
   validaCampo(valorTotalNotasPagas, calcularValorTotalNotasAPagas(filtraLista));
 }
+
+validaSeletor(filtrarMes, filtraMes);
+validaSeletor(filtrarAno, filtraAno);
 
 if (filtrarTrimestre !== null) {
   filtrarTrimestre.addEventListener('change', () => {
