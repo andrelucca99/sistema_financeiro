@@ -27,9 +27,21 @@ body {
 }
 
 .sidebar-logo a {
-  color: #e9ecef;
+  color: #efefe9;
   font-size: 1.15rem;
   font-weight: 600;
+}
+
+.sidebar-logo .logo {
+  text-decoration: none;
+}
+
+.sidebar-logo .logo:hover {
+  background-color: #cfe2ff49;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
 }
 
 .sidebar-nav {
@@ -40,7 +52,6 @@ body {
 }
 
 .sidebar-item {
-  /* background-color: rgb(188, 189, 169); */
   padding-left: 10px;
   height: 10vh;
 }
@@ -55,7 +66,7 @@ body {
   width: 100%;
   padding: 10px;
   border-radius: 10px;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 /* Sidebar Toggle */
