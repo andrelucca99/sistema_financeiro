@@ -3,7 +3,8 @@
 ## Informações
  - Nome: André Lucas
  - E-mail: andrelucca99@gmail.com
- - [Linkedin](https://www.linkedin.com/in/andre-lucas20/)
+ - Linkedin: [link](https://www.linkedin.com/in/andre-lucas20/)
+ - Visualize o projeto: [link](https://sistema-financeiro-beta.vercel.app/)
 
 ## Ferramentas utilizadas
 
@@ -12,8 +13,6 @@
   - Versões:
     - Bootstrap: `https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js`
     - Chart.js: `https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js`
-  
-  - Visualize o projeto: [link](https://sistema-financeiro-beta.vercel.app/)
 
 ## Instruções básicas para rodar o projeto na sua maquina:
 
